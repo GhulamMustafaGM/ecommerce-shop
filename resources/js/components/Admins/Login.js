@@ -1,30 +1,37 @@
 import React, { Component } from 'react';
 
+
 class Login extends Component {
-    state = {  }
+    state = {
+      email: '',
+      password:''
+      };
+
+      changeState=(e)=>{
+        this.state({
+          [e.target.name]:e.target.value
+        })
+      }
+
     render() { 
         return ( 
-            <div class="card border-dark mb-3" style="max-width: 18rem;">
-                <div class="card-header">Header</div>
-                    <div class="card-body">
-                    <form>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Email address</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              <div className="card border-dark mb-3" style={{maxWidth: '18rem'}}>
+                <div className="card-header">Header</div>
+                <div className="card-body">
+                  <form>
+                    <div className="form-group">
+                      <label htmlFor="exampleInputEmail1">Email address</label>
+                      <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name='email' value={this.state.email} onchange={this.changeState} />
+                      <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword1">
+                    <div className="form-group">
+                      <label htmlFor="exampleInputPassword1">Password</label>
+                      <input type="password" className="form-control" id="exampleInputPassword1" name='password' value={this.state.password} onchange={this.changeState} />
                     </div>
-                    <div class="form-group form-check">
-                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-primary">Submit</button>
                   </form>
-                    </div>
-            </div>
+                </div>
+              </div>
         );
     }
 }
