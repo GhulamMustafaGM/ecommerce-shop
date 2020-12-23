@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-const url='http://localhost:800/api/';
+const url='http://127.0.0.1:8000/api/';
 
-export const login = adminsData => {
+export const login=(adminsData) => {
     return axios.post(
         url + "admins/login",
         {

@@ -7,8 +7,10 @@ import Login from './Admins/Login';
 class App extends Component {
     
     render() { 
-        return (  <div className="container">
+        return (
+                <div className="container">
                 <Router>
+                <Route exact path='/home' component={Home}/>
                     <Route exact path='/adminsLogin' component={Login}/>
                     
                 </Router>

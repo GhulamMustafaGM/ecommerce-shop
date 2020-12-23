@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 class Home extends Component {
-    state = {  }
+    state = { };
     render() { 
-        return ( <div>home</div> );
+        return <div>home</div>;
     }
 }
 
