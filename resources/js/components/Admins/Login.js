@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import { login } from './functions';
+import { login } from "./functions";
+import '../../../css/admins/login.css'
 
 
 class Login extends Component {
     state = {
+      //inputs 
       email: '',
-      password:''
+      password:'',
+
+      //validation 
+      error:''
       };
 
       changeState=(e)=>{
@@ -23,12 +28,19 @@ class Login extends Component {
         login(adminsData).then(res=>{
           if(res) {
             this.props.history.push(`/home`);
+          } else{
+            this.setState({
+              error:'email or password is wrong'
+            })
           }
         })
       }
 
     render() { 
+      const error=<div className='alert alert-danger' >{this.state.error}</div>
         return ( 
+          <div>
+              {this.state.error ? error : null}
               <div className="card text-white bg-dark mb-3" style={{maxWidth: '18rem'}}>
                 <div className="card-header">Header</div>
                 <div className="card-body">
@@ -47,6 +59,7 @@ class Login extends Component {
                   </form>
                 </div>
               </div>
+            </div>
         );
     }
 }
