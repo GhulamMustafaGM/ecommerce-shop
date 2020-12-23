@@ -12,6 +12,14 @@ class Login extends Component {
           [e.target.name]:e.target.value
         })
       }
+      submitState=(e)=>{
+        e.preventDefault();
+
+        const adminsData={
+          email:this.state.email,
+          password:this.state.password
+        }
+      }
 
     render() { 
         return ( 
