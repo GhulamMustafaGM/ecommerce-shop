@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import Home from './Admins/Home';
 import Login from './Admins/Login';
 
 class App extends Component {
@@ -11,7 +12,7 @@ class App extends Component {
                 <div className="container">
                 <Router>
                 <Route exact path='/home' component={Home}/>
-                    <Route exact path='/adminsLogin' component={Login}/>
+                <Route exact path='/adminsLogin' component={Login}/>
                     
                 </Router>
                 </div>
@@ -25,4 +26,4 @@ if (document.getElementById('App')) {
     ReactDOM.render(<App />, document.getElementById('App'));
 }
 
-//{ "plugins": ["@babel/plugin-proposal-class-properties"] }
+//
