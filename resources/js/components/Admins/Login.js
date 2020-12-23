@@ -9,7 +9,7 @@ class Login extends Component {
       };
 
       changeState=(e)=>{
-        this.state({
+        this.setState({
           [e.target.name]:e.target.value
         })
       }

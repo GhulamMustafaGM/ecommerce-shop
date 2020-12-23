@@ -69987,7 +69987,7 @@ var Login = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "changeState", function (e) {
-      _this.state(_defineProperty({}, e.target.name, e.target.value));
+      _this.setState(_defineProperty({}, e.target.name, e.target.value));
     });
 
     _defineProperty(_assertThisInitialized(_this), "submitState", function (e) {
