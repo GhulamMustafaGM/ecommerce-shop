@@ -70668,7 +70668,7 @@ var Login = /*#__PURE__*/function (_Component) {
         className: "alert alert-danger"
       }, this.state.error);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.error ? error : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card text-white bg-dark mb-3",
+        className: "card text-white bg-dark mb-3 card_login",
         style: {
           maxWidth: '18rem'
         }

@@ -41,7 +41,7 @@ class Login extends Component {
         return ( 
           <div>
               {this.state.error ? error : null}
-              <div className="card text-white bg-dark mb-3" style={{maxWidth: '18rem'}}>
+              <div className="card text-white bg-dark mb-3 card_login" style={{maxWidth: '18rem'}} >
                 <div className="card-header">Header</div>
                 <div className="card-body">
 
