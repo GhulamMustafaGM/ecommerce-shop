@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { login } from './functions';
 
 
 class Login extends Component {
@@ -19,6 +20,11 @@ class Login extends Component {
           email:this.state.email,
           password:this.state.password
         }
+        login(adminsData).then(res=>{
+          if(res) {
+            this.props.history.push(`/home`);
+          }
+        })
       }
 
     render() { 
@@ -26,7 +32,7 @@ class Login extends Component {
               <div className="card border-dark mb-3" style={{maxWidth: '18rem'}}>
                 <div className="card-header">Header</div>
                 <div className="card-body">
-                  <form>
+                  <form onSubmit={this.submitState}>
                     <div className="form-group">
                       <label htmlFor="exampleInputEmail1">Email address</label>
                       <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name='email' value={this.state.email} onchange={this.changeState} />
