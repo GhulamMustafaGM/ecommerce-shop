@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admins\AdminsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'admins','namespace'=>'Admins'], function () {
-    Route::post('login', 'AdminsController@adminsLogin');
+    Route::post('login', [AdminsController::class,'adminsLogin']);
+    Route::get('authadmin', [AdminsController::class, 'getAuthenticateAdmin']);
         
     });
 
