@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admins\AdminsController;
+use App\Http\Controllers\Admins\ItemsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +15,18 @@ use App\Http\Controllers\Admins\AdminsController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+    //Login and getauthadmin
 
 Route::group(['prefix' => 'admins','namespace'=>'Admins'], function () {
     Route::post('login', [AdminsController::class,'adminsLogin']);
     Route::get('authadmin', [AdminsController::class, 'getAuthenticateAdmin']);
         
     });
+
+    //items
+
+    Route::group(['prefix' => 'admins','namespace'=>'Admins'], function () {
+        Route::post('add/items{id}', [ItemsController::class,'addItem']);
+            
+        });
 
