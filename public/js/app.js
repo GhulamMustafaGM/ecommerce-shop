@@ -70733,7 +70733,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var url = 'http://127.0.0.1:8000/api/';
 var login = function login(adminsData) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url + "admins/login", {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url + 'admins/login', {
     email: adminsData.email,
     password: adminsData.password
   }, {
@@ -70829,7 +70829,7 @@ var App = /*#__PURE__*/function (_Component) {
 
 if (document.getElementById('App')) {
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, null), document.getElementById('App'));
-} //
+}
 
 /***/ }),
 

@@ -11,11 +11,10 @@ class App extends Component {
     render() { 
         return (
                 <div className="container">
-                <Router>
-                <Route exact path='/home' component={Home}/>
-                <Route exact path='/adminsLogin' component={Login}/>
-                    
-                </Router>
+                    <Router>
+                        <Route exact path='/home' component={Home} />
+                        <Route exact path='/adminsLogin' component={Login} />
+                    </Router>
                 </div>
     );
     }
@@ -27,4 +26,4 @@ if (document.getElementById('App')) {
     ReactDOM.render(<App />, document.getElementById('App'));
 }
 
-//
+

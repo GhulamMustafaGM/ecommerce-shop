@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'admins','namespace'=>'Admins'], function () {
-    Route::post('login', [AdminsController::class,'adminsLogin']);
+    Route::post('login', 'AdminsController@adminsLogin');
         
     });
 

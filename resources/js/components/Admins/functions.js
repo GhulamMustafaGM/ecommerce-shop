@@ -4,8 +4,7 @@ const url='http://127.0.0.1:8000/api/';
 
 export const login=(adminsData) => {
     return axios.post(
-        url + "admins/login",
-        {
+        url+'admins/login',{
             email: adminsData.email,
             password: adminsData.password
         },
