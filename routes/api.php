@@ -25,7 +25,7 @@ Route::group(['prefix' => 'admins','namespace'=>'Admins'], function () {
 
     //items
 
-    Route::group(['prefix' => 'admins','namespace'=>'Admins'], function () {
+    Route::group(['prefix' => 'admins','namespace'=>'Admins', 'middleware'=>'adminsRoutes','jwt.auth'], function () {
         Route::post('add/items{id}', [ItemsController::class,'addItem']);
             
         });

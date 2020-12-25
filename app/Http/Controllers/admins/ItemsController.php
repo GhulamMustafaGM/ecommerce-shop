@@ -8,11 +8,12 @@ use Illuminate\Http\Request;
 class ItemsController extends Controller
 {
     //
+    use uploadphoto;
     public function addItem(Request $request, $id) {
-        $file=$request->file('photo');
-        $fileName=time().'_'.$file->getClientOriginalName();
-        $filePath='images/items';
-        $file->move($filePath,$fileName);
+
+        //import from trait(uploadphoto)
+        
+        $fileName=$this->uploadphoto($request->file('photo'), 'images/items');
 
         $items=Items::create([
             'name'=>$request->get('name'),

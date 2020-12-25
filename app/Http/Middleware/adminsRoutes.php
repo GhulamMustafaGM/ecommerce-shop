@@ -16,7 +16,7 @@ class adminsRoutes
      */
     public function handle(Request $request, Closure $next)
     {
-        Auth::shouldUse('api');
+        Auth::shouldUse('admins');
         return $next($request);
     }
 }
