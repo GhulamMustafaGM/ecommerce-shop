@@ -15,13 +15,19 @@ use App\Http\Controllers\Admins\ItemsController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-    //Login and getauthadmin
+    ########################## Login #########################################
 
 Route::group(['prefix' => 'admins','namespace'=>'Admins'], function () {
     Route::post('login', [AdminsController::class,'adminsLogin']);
-    Route::get('authadmin', [AdminsController::class, 'getAuthenticateAdmin']);
         
     });
+
+    ########################## Login #########################################
+
+    Route::group(['prefix' => 'admins','namespace'=>'Admins', 'middleware'=>'adminsRoutes','jwt.auth'], function () {
+        Route::get('authadmin', [AdminsController::class,'getAuthenticatedAdmin']);
+            
+        });
 
     //items
 
