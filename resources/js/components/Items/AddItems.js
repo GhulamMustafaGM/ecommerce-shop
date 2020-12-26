@@ -30,10 +30,14 @@ class AddItems extends Component {
     submitState=(e)=>{
         e.preventDefault();
 
-        const adminsData={
-        email:this.state.email,
-        password:this.state.password
-        }
+        const formData = new FormData();
+        formData.append('name',this.state.name)
+        formData.append('description',this.state.description)
+        formData.append('status',this.state.status)
+        formData.append('price',this.state.price)
+        formData.append('photo',this.state.photo)
+
+
         login(adminsData).then(res=>{
         if(res) {
             this.props.history.push(`/home`);
