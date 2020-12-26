@@ -1,21 +1,18 @@
 import axios from 'axios'
 
-const url='http://127.0.0.1:8000/api/admins';
+const url='http://127.0.0.1:8000/api/admins/';
 
 export const login = async adminsData => {
     return await axios.post(
-        url + "admins/login", {
-            email: adminsData.email,
-            password: adminsData.password
-        },
+        url + "authadmin", 
         {
             headers: {
-                "content-type": "application/json"
+                Authorization: `bearer ${localStorage.admins_token}`
             }
         }
-    ).then(res=>{
-        localStorage.setItem('adminsToken', res.data.token);
-        return res.data.token
+    ).then(res => {
+        
+        return res
     }).catch(err=> {
         console.log(err);
     });
