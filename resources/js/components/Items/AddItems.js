@@ -4,8 +4,11 @@ import React, { Component } from 'react'
 class AddItems extends Component {
     state = {
     //inputs 
-    email: '',
-    password:'',
+    name: '',
+    description:'',
+    status:'',
+    price:'',
+    photo:'',
 
     //validation 
     error:''
@@ -16,6 +19,14 @@ class AddItems extends Component {
         [e.target.name]:e.target.value
         })
     }
+
+    changeStatePhoto = (e)=>{
+        this.setState({
+            photo:e.target.files[0]
+        })
+    };
+
+
     submitState=(e)=>{
         e.preventDefault();
 
