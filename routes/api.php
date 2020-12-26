@@ -22,14 +22,14 @@ Route::group(['prefix' => 'admins','namespace'=>'Admins'], function () {
         
     });
 
-    ########################## Login #########################################
+    ########################## getauthadmin #########################################
 
     Route::group(['prefix' => 'admins','namespace'=>'Admins', 'middleware'=>'adminsRoutes','jwt.auth'], function () {
         Route::get('authadmin', [AdminsController::class,'getAuthenticatedAdmin']);
             
         });
 
-    //items
+    ######################################## items ##########################################
 
     Route::group(['prefix' => 'admins','namespace'=>'Admins', 'middleware'=>'adminsRoutes','jwt.auth'], function () {
         Route::post('add/items{id}', [ItemsController::class,'addItem']);
