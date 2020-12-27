@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { additems } from './functions';
 
 
 class AddItems extends Component {
@@ -47,6 +48,9 @@ class AddItems extends Component {
 
         const admins_id=this.state.admins_id
 
+        additems(admins_id, formData).then(res => {
+            console.log(res);
+        });
 
         login(adminsData).then(res=>{
         if(res) {
@@ -60,30 +64,50 @@ class AddItems extends Component {
     }
 
     render() { 
-    const error=<div className='alert alert-danger' >{this.state.error}</div>
-        return ( 
+    
         <div>
-            {this.state.error ? error : null}
+            
             <div className="card text-white bg-dark mb-3 card_login" style={{maxWidth: '18rem'}} >
-                <div className="card-header">Header</div>
+                <div className="card-header">add item</div>
                 <div className="card-body">
 
                 <form onSubmit={this.submitState}>
                     <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Email address</label>
-                    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name='email' value={this.state.email} onChange={this.changeState} />
-                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <label htmlFor="exampleInputEmail1">name address</label>
+                    <input type="text" className="form-control" name='name' value={this.state.name} onChange={this.changeState} />
+                    <small id="nameHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
+
                     <div className="form-group">
-                    <label htmlFor="exampleInputPassword1">Password</label>
-                    <input type="password" className="form-control" id="exampleInputPassword1" name='password' value={this.state.password} onChange={this.changeState} />
+                    <label htmlFor="exampleInputdescription1">description</label>
+                    <input type="text" className="form-control" id="exampleInputdescription1" name='description' value={this.state.description} onChange={this.changeState} />
                     </div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
+
+                    <div className="form-group">
+                    <label htmlFor="exampleInputstatus1">status</label>
+                    <select type="text" className="form-control" id="exampleInputdescription1" name='status' value={this.state.status} onChange={this.changePhoto} >
+                    <option value=''>...</option>
+                    <option value='1'>new</option>
+                    <option value='2'>used</option>
+                    </select>
+
+                    </div>
+
+                    <div className="form-group">
+                    <label htmlFor="exampleInputprice1">price</label>
+                    <input type="text" className="form-control" id="exampleInputprice1" name='price' value={this.state.price} onChange={this.changeState} />
+                    </div>
+                    
+                    <div className="form-group">
+                    <label htmlFor="exampleInputphoto1">photo</label>
+                    <input type="text" className="form-control" id="exampleInputphoto1" name='photo'  onChange={this.changeState} />
+                    </div>
+
+                    <button type="submit" className="btn btn-primary">add</button>
                 </form>
                 </div>
             </div>
-            </div>
-        );
+        </div>
     }
 }
 

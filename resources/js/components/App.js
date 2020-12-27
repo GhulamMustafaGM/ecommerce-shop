@@ -2,9 +2,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Home from './Admins/Home';
-import Login from './Admins/Login';
-import Navbar from './Admins/Navbar';
+import Home from "./Admins/Home";
+import Login from "./Admins/Login";
+import Navbar from "./Admins/Navbar";
+import AddItems from "./items/AddItems";
 
 
 class App extends Component {
@@ -15,6 +16,7 @@ class App extends Component {
                 <Router>
                     <Navbar />
                         <div className="container">
+                                <Route exact path='/additem' component={AddItems} />
                                 <Route exact path='/home' component={Home} />
                                 <Route exact path='/adminsLogin' component={Login} />
                         </div>

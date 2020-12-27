@@ -7,32 +7,29 @@ export const login = async adminsData => {
         url + "authadmin", 
         {
             headers: {
-                Authorization: `bearer ${localStorage.admins_token}`
+                Authorization: `bearer ${localStorage.adminsToken}`
             }
         }
     ).then(res => {
-        
-        return res
+        localStorage.setItem("adminsToken", res.data.token);
+        return res.data.token;
     }).catch(err=> {
         console.log(err);
     });
 };
 
 export const getauthadmin = async adminsData => {
-    return await axios.post(
-        url + "login", {
-            email: adminsData.email,
-            password: adminsData.password
-        },
+    return await axios.get(
+        url + "authadmin", 
         {
             headers: {
-                "content-type": "application/json"
+                Authorization:`bearer ${localStorage.adminsData}`
             }
         }
     ).then(res=>{
-        localStorage.setItem('adminsToken', res.data.token);
-        return res.data.token
-    }).catch(err=> {
+        
+        return res
+    }).catch(err => {
         console.log(err);
     });
 };

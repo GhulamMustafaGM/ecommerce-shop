@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const url='http://127.0.0.1:8000/api/admins/';
 
-export const getauthadmin = async (admins_id, formData) => {
+export const additems = async (admins_id, formData) => {
     return await axios.post(
         url + "add/items" + admins_id, formData, {
             email: adminsData.email,
@@ -10,7 +10,7 @@ export const getauthadmin = async (admins_id, formData) => {
         },
         {
             headers: {
-                "content-type": "application/json"
+                Authorization:`bearer ${localStorage.addminsToken}`
             }
         }
     ).then(res=>{
