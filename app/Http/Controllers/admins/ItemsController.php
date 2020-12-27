@@ -11,6 +11,15 @@ class ItemsController extends Controller
     use uploadphoto;
     public function addItem(Request $request, $id) {
 
+        $validator = Validator::make($request->all(), [
+            'name'=>'required|string|min:4|max:25',
+            'description'=>'required|string|min:4|max:100',
+            'status'=>'required|numric',
+            'price'=>'required|string',
+            'photo'=>'required|image|mimes:jpg,jpej,gif,png|max:14048',
+
+        ])
+
         //import from trait(uploadphoto)
         
         $fileName=$this->uploadphoto($request->file('photo'), 'images/items');
