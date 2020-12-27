@@ -14,6 +14,14 @@ class AddItems extends Component {
     error:''
     };
 
+    ComponentDidMount() {
+        getauthadmin().then(res=>{
+            this.setState({
+                admins_id:res.data.admin.id
+            })
+        })
+    }
+
     changeState=(e)=>{
         this.setState({
         [e.target.name]:e.target.value
@@ -36,6 +44,8 @@ class AddItems extends Component {
         formData.append('status',this.state.status)
         formData.append('price',this.state.price)
         formData.append('photo',this.state.photo)
+
+        const admins_id=this.state.admins_id
 
 
         login(adminsData).then(res=>{
