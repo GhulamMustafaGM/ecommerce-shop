@@ -11,8 +11,13 @@ class AddItems extends Component {
     price:'',
     photo:'',
 
-    //validation 
-    error:''
+    //validation
+    nameRequired:'',
+    descriptionRequired:'',
+    statusRequrired:'',
+    priceRequired:'',
+    photoRequired:'',
+    error:""
     };
 
     ComponentDidMount() {

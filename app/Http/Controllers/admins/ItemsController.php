@@ -11,14 +11,19 @@ class ItemsController extends Controller
     use uploadphoto;
     public function addItem(Request $request, $id) {
 
-        $validator = Validator::make($request->all(), [
+        $rules = [
             'name'=>'required|string|min:4|max:25',
             'description'=>'required|string|min:4|max:100',
             'status'=>'required|numric',
             'price'=>'required|string',
-            'photo'=>'required|image|mimes:jpg,jpej,gif,png|max:14048',
+            'photo'=>'required|image|mimes:jpg,jpeg,gif,png|max:14048',
+        ];
 
-        ])
+        $validator = Validator::make($request->all(), $rules);
+
+        if($validator->fails()) {
+            return response()->json(['error at validation'], 400);
+        }
 
         //import from trait(uploadphoto)
         
