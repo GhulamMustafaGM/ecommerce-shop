@@ -24,8 +24,72 @@ class AddItems extends Component {
         getauthadmin().then(res=>{
             this.setState({
                 admins_id:res.data.admin.id
+            });
+        });
+    }
+
+    validateName=()=>{
+        let nameRequired='';
+        if(this.state.name.length < 4) {
+            nameRequired='you should enter at least 4 characters'
+        }
+        if(nameRequired) {
+            this.setState({
+                nameRequired
             })
-        })
+        }else{
+            this.setState({
+                nameRequired:''
+            })
+        }
+    }
+
+    validatedescription=()=>{
+        let descriptionRequired='';
+        if(this.state.name.length < 4) {
+            descriptionRequired='you should select status'
+        }
+        if(descriptionRequired) {
+            this.setState({
+                descriptionRequired
+            })
+        }else{
+            this.setState({
+                descriptionRequired:''
+            })
+        }
+    }
+
+    validatestatus=()=>{
+        let statusRequired='';
+        if(! this.state.status) {
+            statusRequired='you should enter at least 4 characters'
+        }
+        if(statusRequired) {
+            this.setState({
+                statusRequired
+            })
+        }else{
+            this.setState({
+                statusRequired:''
+            })
+        }
+    }
+
+    validateprice=()=>{
+        let priceRequired='';
+        if(! this.state.price) {
+            priceRequired='you should select price'
+        }
+        if(priceRequired) {
+            this.setState({
+                priceRequired
+            })
+        }else{
+            this.setState({
+                priceRequired:''
+            })
+        }
     }
 
     changeState=(e)=>{
@@ -43,6 +107,11 @@ class AddItems extends Component {
 
     submitState=(e)=>{
         e.preventDefault();
+
+        this.validateName();
+        this.validatedescription();
+        this.validatestatus();
+        this.validateprice();
 
         const formData = new FormData();
         formData.append('name',this.state.name)
@@ -80,12 +149,13 @@ class AddItems extends Component {
                     <div className="form-group">
                     <label htmlFor="exampleInputEmail1">name address</label>
                     <input type="text" className="form-control" name='name' value={this.state.name} onChange={this.changeState} />
-                    <small id="nameHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <small style={{ color:'red' }}>{this.state.nameRequired} </small>
                     </div>
 
                     <div className="form-group">
                     <label htmlFor="exampleInputdescription1">description</label>
                     <input type="text" className="form-control" id="exampleInputdescription1" name='description' value={this.state.description} onChange={this.changeState} />
+                    <small style={{ color:'red' }}>{this.state.descriptionRequired} </small>
                     </div>
 
                     <div className="form-group">
@@ -95,12 +165,14 @@ class AddItems extends Component {
                     <option value='1'>new</option>
                     <option value='2'>used</option>
                     </select>
+                    <small style={{ color:'red' }}>{this.state.statusRequired} </small>
 
                     </div>
 
                     <div className="form-group">
                     <label htmlFor="exampleInputprice1">price</label>
                     <input type="text" className="form-control" id="exampleInputprice1" name='price' value={this.state.price} onChange={this.changeState} />
+                    <small style={{ color:'red' }}>{this.state.priceRequired} </small>
                     </div>
                     
                     <div className="form-group">
