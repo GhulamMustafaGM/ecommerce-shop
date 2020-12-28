@@ -17,6 +17,8 @@ class AddItems extends Component {
     statusRequrired:'',
     priceRequired:'',
     photoRequired:'',
+    photoType:'',
+    photoSize:'',
     error:""
     };
 
@@ -91,6 +93,37 @@ class AddItems extends Component {
             })
         }
     }
+
+    validatephoto=()=>{
+        let photoRequired='';
+        if(! this.state.photo) {
+            photoRequired='you should select photo'
+        }
+        if(photoRequired) {
+            this.setState({
+                photoRequired
+            })
+        }else{
+            this.setState({
+                photoRequired:''
+            })
+        }
+
+        let photoType='';
+        if(! this.state.photo.type !=='image/jpg' && ! this.state.photo.type !=='image/jpeg' && ! this.state.photo.type !=='image/png' && ! this.state.photo.type !=='image/gif') {
+            photoRequired='you should select photo'
+        }
+        if(photoRequired) {
+            this.setState({
+                photoRequired
+            })
+        }else{
+            this.setState({
+                photoRequired:''
+            })
+        }
+    }
+
 
     changeState=(e)=>{
         this.setState({
