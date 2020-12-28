@@ -15,9 +15,15 @@ class Navbar extends Component {
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
+                    
                     <li class="nav-item active">
                         <Link class="nav-link" to="/home">Home <span class="sr-only">(current)</span></Link>
                     </li>
+
+                    <li class="nav-item active">
+                    <Link class="nav-link" to="/getitem"> Items </Link>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" to="/adminsLogin" onClick={this.logout.bind(this)}>logout</a>
                     </li>
