@@ -30,6 +30,8 @@ class AddItems extends Component {
         });
     }
 
+    inputRef = React.createRef();
+
     validateName=()=>{
         let nameRequired='';
         if(this.state.name.length < 4) {
@@ -118,7 +120,7 @@ class AddItems extends Component {
             this.setState({
                 photoType
             });
-            return
+            
         }else{
             this.setState({
                 photoType:""
@@ -126,7 +128,7 @@ class AddItems extends Component {
         }
 
         let photoSize="";
-        if(! this.state.photo.size > 14048) {
+        if( this.state.photo.size > 14048) {
             photoSize = "maximum size should be less than 14 MB";
         }
         if(photoSize) {
@@ -174,9 +176,14 @@ class AddItems extends Component {
 
         additems(admins_id, formData).then(res => {
             if(res) {
+                this.inputRef.current.value=''
                 this.setState({
-                    success:'you created item successfully'
-                })
+                    success:'you created item successfully',
+                    name : "",
+                    description : "",
+                    status : "",
+                    price : "",
+                });
             }
         });
 
@@ -232,12 +239,12 @@ class AddItems extends Component {
                                 
                                 <div className="form-group">
                                 <label htmlFor="exampleInputphoto1">photo</label>
-                                <input type="text" className="form-control" id="exampleInputphoto1" name='photo'  onChange={this.changeState} />
-                                </div>
-
+                                <input ref={this.inputRef} type="file" className="form-control" id="exampleInputphoto1" name='photo'  onChange={this.changeState} />
                                 <small style={{ color:'red' }}>{this.state.photoRequired} </small>
                                 <small style={{ color:'red' }}>{this.state.photoType} </small>
+                                <br/>
                                 <small style={{ color:'red' }}>{this.state.photoSize} </small>
+                                </div>
 
                                 <button type="submit" className="btn btn-primary">add</button>
                             </form>
