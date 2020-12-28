@@ -30,16 +30,21 @@ class ItemsController extends Controller
         $fileName=$this->uploadphoto($request->file('photo'), 'images/items');
 
         $items=Items::create([
-            'name'=>$request->get('name'),
-            'description'=>$request->get('description'),
-            'status'=>$request->get('status'),
-            'price'=>$request->get('price'),
-            'date'=>now(),
-            'approve'=>1,
-            'photo'=>$fileName,
-            'admins_id'=>$id
+            'name' => $request->get('name'),
+            'description' => $request->get('description'),
+            'status' => $request->get('status'),
+            'price' => $request->get('price'),
+            'date' => now(),
+            'approve' => 1,
+            'photo' => $fileName,
+            'admins_id' => $id
         ]
         );
             return response()->json(compact('items'));
+    }
+
+    public function getItem() {
+        $items = Items::all();
+        return response()->json(compact('items'));
     }
 }
