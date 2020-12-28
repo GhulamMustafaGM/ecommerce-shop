@@ -109,20 +109,34 @@ class AddItems extends Component {
             })
         }
 
-        let photoType='';
+        let photoType="";
         if(! this.state.photo.type !=='image/jpg' && ! this.state.photo.type !=='image/jpeg' && ! this.state.photo.type !=='image/png' && ! this.state.photo.type !=='image/gif') {
-            photoRequired='you should select photo'
+            photoType = "invalid image";
         }
-        if(photoRequired) {
+        if(photoType) {
             this.setState({
-                photoRequired
+                photoType
             })
         }else{
             this.setState({
-                photoRequired:''
-            })
+                photoType:''
+            });
         }
-    }
+
+        let photosize="";
+        if(! this.state.photo.size > 14048) {
+            photosize = "maximum size should be less than 14 MB";
+        }
+        if(photosize) {
+            this.setState({
+                photosize
+            })
+        }else{
+            this.setState({
+                photosize:""
+            });
+        }
+    };
 
 
     changeState=(e)=>{
