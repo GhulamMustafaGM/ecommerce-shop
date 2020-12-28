@@ -5,9 +5,7 @@ const token = { Authorization:`bearer ${localStorage.addminsToken}` }
 
 export const additems = async (admins_id, formData) => {
     return await axios.post(
-        url + "add/items" + admins_id, formData, {
-            
-        },
+        url + "add/items" + admins_id, formData, 
         {
             headers: token
         }
@@ -18,11 +16,9 @@ export const additems = async (admins_id, formData) => {
     });
 };
 
-export const additems = async (admins_id, formData) => {
-    return await axios.post(
-        url + "add/items" + admins_id, formData, {
-            
-        },
+export const getitems = async () => {
+    return await axios.get(
+        url + "get/items" + admins_id, formData, 
         {
             headers: token
         }
