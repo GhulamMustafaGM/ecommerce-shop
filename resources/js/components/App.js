@@ -6,6 +6,7 @@ import Home from "./Admins/Home";
 import Login from "./Admins/Login";
 import Navbar from "./Admins/Navbar";
 import AddItems from "./items/AddItems";
+import AddItems from "./items/GetItems";
 
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
                 <Router>
                     <Navbar />
                         <div className="container">
+                                <Route exact path='/getitem' component={GetItems} />
                                 <Route exact path='/additem' component={AddItems} />
                                 <Route exact path='/home' component={Home} />
                                 <Route exact path='/adminsLogin' component={Login} />

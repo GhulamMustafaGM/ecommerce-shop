@@ -33,6 +33,12 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
+        public function map() {
+            $this->mapAdminsApiRoutes();
+            $this->mapWebRoutes();
+        }
+
+    
     public function boot()
     {
         $this->configureRateLimiting();
@@ -59,5 +65,12 @@ class RouteServiceProvider extends ServiceProvider
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
         });
+    }
+
+    protected function mapAdminsApiRoutes() {
+        Route::prefix('api')
+            ->middleware('api')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/adminsApi.php'));
     }
 }
