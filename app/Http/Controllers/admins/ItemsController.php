@@ -47,4 +47,9 @@ class ItemsController extends Controller
         $items = Items::all();
         return response()->json(compact('items'));
     }
+
+    public function editItem($id) {
+        $items = Items::find($id);
+        return response()->json(compact('items'));
+    }
 }

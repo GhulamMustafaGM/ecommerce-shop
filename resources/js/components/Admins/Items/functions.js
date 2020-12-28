@@ -18,7 +18,7 @@ export const additems = async (admins_id, formData) => {
 
 export const getitems = async () => {
     return await axios.get(
-        url + "get/items" + admins_id, formData, 
+        url + "get/items" , 
         {
             headers: token
         }
@@ -28,3 +28,17 @@ export const getitems = async () => {
         console.log(err);
     });
 };
+
+export const edititems = async (id) => {
+    return await axios.get(
+        url + "edit/items" + id, 
+        {
+            headers: token
+        }
+    ).then(res=>{
+        return res;
+    }).catch(err=> {
+        console.log(err);
+    });
+};
+

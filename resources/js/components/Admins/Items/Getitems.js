@@ -35,7 +35,7 @@ class Getitems extends Component {
                         <th scope="row">1</th>
                         <td>{ item.name }</td>
                         <td>{ item.description }</td>
-                        <td>..</td>
+                        <td><Link className='btn btn-info' to={'/edit/item' +item.id }>Edit item</Link></td>
                     </tr>
                         )
                     })}

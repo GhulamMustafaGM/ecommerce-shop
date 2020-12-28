@@ -34,6 +34,7 @@ Route::group(['prefix' => 'admins','namespace'=>'Admins'], function () {
     Route::group(['prefix' => 'admins','namespace'=>'Admins', 'middleware'=>'adminsRoutes','jwt.auth'], function () {
         Route::post('add/items{id}', [ItemsController::class,'addItem']);
         Route::get('get/items', [ItemsController::class,'getItem']);
+        Route::get('edit/items{id}', [ItemsController::class,'editItem']);
             
         });
 

@@ -17,6 +17,7 @@ class App extends Component {
                 <Router>
                     <Navbar />
                         <div className="container">
+                                <Route exact path='/edit/item:id' component={EditItems} />
                                 <Route exact path='/getitem' component={GetItems} />
                                 <Route exact path='/add/item' component={AddItems} />
                                 <Route exact path='/home' component={Home} />

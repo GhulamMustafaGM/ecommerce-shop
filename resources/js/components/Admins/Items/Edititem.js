@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
-import { additems } from './functions';
+import React, { Component } from 'react';
+import { getauthadmin } from "../../Admins/functions";
+import { additems, edititems } from './functions';
 
 
-class AddItems extends Component {
+class EditItems extends Component {
     state = {
     //inputs 
     name: "",
@@ -23,6 +24,15 @@ class AddItems extends Component {
     };
 
     ComponentDidMount() {
+        const id=this.props.match.params.id
+        edititems(id).then(res=>{
+            this.setState({
+                name: res.data.items.name,
+                description: res.data.items.description,
+                status: res.data.items.state,
+                price : res.data.items.price,
+            })
+        })
         getauthadmin().then(res=>{
             this.setState({
                 admins_id:res.data.admin.id
@@ -255,4 +265,4 @@ class AddItems extends Component {
     }
 }
 
-export default AddItems;
+export default EditItems;
