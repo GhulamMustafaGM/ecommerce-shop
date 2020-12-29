@@ -1,5 +1,7 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Component } from 'react';
 import { Link, Redirect, withRouter } from 'react-router-dom';
+import "../../../css/admins/navbar.css";
 
 class Navbar extends Component {
     logout(e){
@@ -17,15 +19,15 @@ class Navbar extends Component {
                 <ul class="navbar-nav">
                     
                     <li class="nav-item active">
-                        <Link class="nav-link" to="/home">Home <span class="sr-only">(current)</span></Link>
+                        <Link class="nav-link" to="/home"><FontAwesomeIcon icon='home' className='icon' />Home <span class="sr-only">(current)</span></Link>
                     </li>
 
                     <li class="nav-item active">
-                    <Link class="nav-link" to="/getitem"> Items </Link>
+                    <Link class="nav-link" to="/getitem"><FontAwesomeIcon icon='briefcase' className='icon' /> Items </Link>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" to="/adminsLogin" onClick={this.logout.bind(this)}>logout</a>
+                    <li class="nav-item layout">
+                        <a class="nav-link" href="/adminsLogin" onClick={this.logout.bind(this)}><FontAwesomeIcon icon='angle-double-left' className='icon' /> logout</a>
                     </li>
                 </ul>
             </div>
