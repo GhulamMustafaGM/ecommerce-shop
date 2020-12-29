@@ -39,7 +39,7 @@ class ItemsController extends Controller
     }
 
     public function getItem() {
-        $items = Items::all();
+        $items = Items::orderBy('id', 'desc')->paginate(5);
         return response()->json(compact('items'));
     }
 
@@ -68,5 +68,10 @@ class ItemsController extends Controller
             $items->save();
 
             return response()->json(compact('items'));
+    }
+
+    public function deleteItem($id) {
+        $items = Items::find($id);
+        $items->delete();
     }
 }

@@ -29,8 +29,21 @@ export const getitems = async () => {
     });
 };
 
+export const edititems = async (id) => {
+    return await axios.get(
+        url + "edit/items" + id, 
+        {
+            headers: token
+        }
+    ).then(res=>{
+        return res;
+    }).catch(err=> {
+        console.log(err);
+    });
+};
+
 export const updateitems = async (id, formData) => {
-    return await axios.post(
+    return await axios.delete(
         url + "update/items" + id, formData, 
         {
             headers: token
@@ -42,9 +55,22 @@ export const updateitems = async (id, formData) => {
     });
 };
 
-export const edititems = async (id) => {
+export const deleteitems = async (id) => {
+    return await axios.post(
+        url + "delete/items" + id,  
+        {
+            headers: token
+        }
+    ).then(res=>{
+        return res;
+    }).catch(err=> {
+        console.log(err);
+    });
+};
+
+export const handlePage = async (pageNumber) => {
     return await axios.get(
-        url + "edit/items" + id, 
+        url + "get/items" +pageNumber , 
         {
             headers: token
         }
