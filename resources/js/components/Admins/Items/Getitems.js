@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { getitems } from "./functions";
 import { Link } from "react-router-dom";
+import '../../../../css/admins/items.css'
 
 class Getitems extends Component {
     state = { 
@@ -18,13 +19,14 @@ class Getitems extends Component {
     render() {
         return (
             <div>
-                <Link className='btn btn-info' to='/add/item'>Add item</Link>
+                <Link className="btn btn-info add_btn" to="/add/item">Add item</Link>
                 <table class="table table-striped">
-                    <thead>
+                    <thead className="bg-info">
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">name</th>
                             <th scope="col">description</th>
+                            <th scope="col">status</th>
                             <th scope="col">control</th>
                         </tr>
                     </thead>
@@ -35,6 +37,8 @@ class Getitems extends Component {
                         <th scope="row">1</th>
                         <td>{ item.name }</td>
                         <td>{ item.description }</td>
+                        <td>{ item.status == 1 ? <span>new</span> : null }</td>
+                        <td>{ item.status == 2 ? <span>used</span> : null }</td>
                         <td><Link className='btn btn-info' to={'/edit/item' +item.id }>Edit item</Link></td>
                     </tr>
                         )
