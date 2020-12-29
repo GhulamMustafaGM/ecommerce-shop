@@ -35,6 +35,7 @@ Route::group(['prefix' => 'admins','namespace'=>'Admins'], function () {
         Route::post('add/items{id}', [ItemsController::class,'addItem']);
         Route::get('get/items', [ItemsController::class,'getItem']);
         Route::get('edit/items{id}', [ItemsController::class,'editItem']);
+        Route::post('update/items{id}', [ItemsController::class,'updateItem']);
             
         });
 

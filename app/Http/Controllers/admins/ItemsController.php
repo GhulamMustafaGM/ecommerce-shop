@@ -13,9 +13,8 @@ class ItemsController extends Controller
 
     public function addItem(Request $request, $id) {
 
-        $this->ItemsRules();
-
-        $rules = $validator = Validator::make($request->all(), $rules);
+        $rules = $this->ItemsRules();
+        $validator = Validator::make($request->all(), $rules);
 
         if($validator->fails()) {
             return response()->json(['error at validation'], 400);
@@ -47,5 +46,27 @@ class ItemsController extends Controller
     public function editItem($id) {
         $items = Items::find($id);
         return response()->json(compact('items'));
+    }
+
+    public function updateItem() {
+
+        $rules = $this->ItemsRules();
+        $validator = Validator::make($request->all(), $rules);
+        if($validator->fails()) {
+            return response()->json(['error at validation'], 400);
+        }
+            $fileName=$this->uploadphoto($request->file('photo'), 'images/items');
+
+            $items=Items::find($id);
+
+            $items->name=$request->name;
+            $items->description=$request->description;
+            $items->status=$request->status;
+            $items->price=$request->price;
+            $items->photo=$fileName;
+
+            $items->save();
+
+            return response()->json(compact('items'));
     }
 }

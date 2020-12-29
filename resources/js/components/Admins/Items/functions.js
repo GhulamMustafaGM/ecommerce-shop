@@ -29,6 +29,19 @@ export const getitems = async () => {
     });
 };
 
+export const updateitems = async (id, formData) => {
+    return await axios.post(
+        url + "update/items" + id, formData, 
+        {
+            headers: token
+        }
+    ).then(res=>{
+        return res;
+    }).catch(err=> {
+        console.log(err);
+    });
+};
+
 export const edititems = async (id) => {
     return await axios.get(
         url + "edit/items" + id, 
