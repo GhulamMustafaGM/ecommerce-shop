@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class ItemsController extends Controller
 {
     //
-    use uploadphoto;
+    use Uploadphoto;
     use ItemRules;
 
     public function addItem(Request $request, $id) {

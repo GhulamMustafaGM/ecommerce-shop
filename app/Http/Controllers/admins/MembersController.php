@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admins;
+namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -8,71 +8,78 @@ use Illuminate\Http\Request;
 class MembersController extends Controller
 {
     //
-    use uploadphoto;
-    use ItemRules;
+    use Uploadphoto;
+    use MembersRules;
 
-    public function addItem(Request $request, $id) {
+    public function addUser(Request $request)
+    {
 
-        $rules = $this->ItemsRules();
+        //import from trait(membersRules)
+        $rules = $this->MembersRules();
+
         $validator = Validator::make($request->all(), $rules);
 
-        if($validator->fails()) {
+        if ($validator->fails()) {
             return response()->json(['error at validation'], 400);
         }
 
-        //import from trait(uploadphoto)
-        
-        $fileName=$this->uploadphoto($request->file('photo'), 'images/items');
+        $fileName = '';
+        if ($request->file('photo')) {
+            //import from trait(Uploadphoto)
+            $fileName = $this->uploadphoto($request->file('photo'), 'images/items');
+        }
 
-        $items=Items::create([
+        $users = Users::create([
             'name' => $request->get('name'),
-            'description' => $request->get('description'),
-            'status' => $request->get('status'),
-            'price' => $request->get('price'),
+            'email' => $request->get('email'),
+            'password' => $request->get('password'),
             'date' => now(),
             'approve' => 1,
             'photo' => $fileName,
-            'admins_id' => $id
+            
         ]
         );
-            return response()->json(compact('items'));
+        return response()->json(compact('users'));
     }
 
-    public function getItem() {
+    public function getItem()
+    {
         $items = Items::orderBy('id', 'desc')->paginate(5);
         return response()->json(compact('items'));
     }
 
-    public function editItem($id) {
+    public function editItem($id)
+    {
         $items = Items::find($id);
         return response()->json(compact('items'));
     }
 
-    public function updateItem() {
+    public function updateItem()
+    {
 
         $rules = $this->ItemsRules();
         $validator = Validator::make($request->all(), $rules);
-        if($validator->fails()) {
+        if ($validator->fails()) {
             return response()->json(['error at validation'], 400);
         }
-            $fileName=$this->uploadphoto($request->file('photo'), 'images/items');
+        $fileName = $this->uploadphoto($request->file('photo'), 'images/items');
 
-            $items=Items::find($id);
+        $items = Items::find($id);
 
-            $items->name=$request->name;
-            $items->description=$request->description;
-            $items->status=$request->status;
-            $items->price=$request->price;
-            $items->photo=$fileName;
+        $items->name = $request->name;
+        $items->description = $request->description;
+        $items->status = $request->status;
+        $items->price = $request->price;
+        $items->photo = $fileName;
 
-            $items->save();
+        $items->save();
 
-            return response()->json(compact('items'));
+        return response()->json(compact('items'));
     }
 
-    public function deleteItem($id) {
+    public function deleteItem($id)
+    {
         $items = Items::find($id);
         $items->delete();
     }
 }
-
