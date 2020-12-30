@@ -32,6 +32,7 @@ class App extends Component {
                                 <Route exact path='/add/item' component={AddItems} />
                                 {/* users */}
                                 <Route exact path='/add/users' component={AddUsers} />
+                                <Route exact path='/get/users' component={GetUsers} />
                                 {/* login and home */}
                                 <Route exact path='/home' component={Home} />
                                 <Route exact path='/adminsLogin' component={Login} />

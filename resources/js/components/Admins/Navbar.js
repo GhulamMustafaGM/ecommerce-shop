@@ -27,7 +27,7 @@ class Navbar extends Component {
                     </li>
 
                     <li class="nav-item active">
-                    <Link class="nav-link" to="/get/members"><FontAwesomeIcon icon='briefcase' className='icon' /> Members </Link>
+                    <Link class="nav-link" to="/get/users"><FontAwesomeIcon icon='briefcase' className='icon' /> Members </Link>
                     </li>
 
                     <li class="nav-item layout">

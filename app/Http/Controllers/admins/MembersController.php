@@ -44,9 +44,12 @@ class MembersController extends Controller
 
     public function getUser()
     {
-        $users = Users::orderBy('id', 'desc')->paginate(5);
+        $users = Users::orderBy('id', 'desc')->paginate(2);
         return response()->json(compact('users'));
     }
 
-    
+    public function deleteUser($id) {
+        $users = users::find($id);
+        $users->delete();
+    }
 }

@@ -45,5 +45,6 @@ Route::group(['prefix' => 'admins','namespace'=>'Admins', 'middleware'=>'adminsR
 Route::group(['prefix' => 'admins','namespace'=>'Admins', 'middleware'=>'adminsRoutes','jwt.auth'], function () {
     Route::post('add/users', [MembersController::class,'addUser']);
     Route::get('get/users', [MembersController::class,'getUser']);
+    Route::delete('delete/users{id}', [MembersController::class,'deleteUser']);
     
 });

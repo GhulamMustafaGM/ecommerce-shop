@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import { deleteitems, getitems, handlePage } from "./functions";
+import { deleteUsers, getUser, handlePage } from "./functions";
 import { Link } from "react-router-dom";
 import "../../../../css/admins/items.css";
 import Pagination from "react-js-pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-class Getitems extends Component {
+class GetUsers extends Component {
     state = {
-        items: [],
+        users: [],
         activePage: 1,
         itemsCountPerPage: 1,
         totalItemsCount: 1,
@@ -15,12 +15,12 @@ class Getitems extends Component {
     };
 
     componentDidMount() {
-        getitems().then(res => {
+        getUser().then(res => {
             this.setState({
-                items: res.data.data,
-                activePage: res.data.items.current_page,
-                itemsCountPerPage: res.data.items.per_page,
-                totalItemsCount: res.data.items.total
+                users: res.data.users.data,
+                activePage: res.data.users.current_page,
+                itemsCountPerPage: res.data.users.per_page,
+                totalItemsCount: res.data.users.total
             });
         });
     }
@@ -29,21 +29,21 @@ class Getitems extends Component {
         console.log(`active page is ${pageNumber}`);
         this.handlePage(pageNumber).then(res => {
             this.setState({
-                items: res.data.data,
-                activePage: res.data.items.current_page,
-                itemsCountPerPage: res.data.items.per_page,
-                totalItemsCount: res.data.items.total
+                users: res.data.users.data,
+                activePage: res.data.users.current_page,
+                itemsCountPerPage: res.data.users.per_page,
+                totalItemsCount: res.data.users.total
             });
         });
     }
     delete = id => {
-        deleteitems(id).then(res => {
+        deleteUsers(id).then(res => {
             let items = this.state.items;
             for (let index = 0; index < items.length; index++) {
                 if (items[index].id == id) {
                     items.splice(index, 1);
                     this.setState({
-                        items
+                        users
                     });
                 }
             }
@@ -53,44 +53,35 @@ class Getitems extends Component {
     render() {
         return (
             <div>
-                <Link className="btn btn-info add_btn" to="/add/item">
+                <Link className="btn btn-info add_btn" to="/add/user">
                     <FontAwesomeIcon icon='plus-square' className='icon' />
-                    Add item
+                    Add user
                 </Link>
                 <table class="table table-striped">
                     <thead className="bg-info">
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">user ID</th>
                             <th scope="col">name</th>
-                            <th scope="col">description</th>
-                            <th scope="col">status</th>
+                            <th scope="col">email</th>
+                            <th scope="col">date</th>
                             <th scope="col">control</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.items.map(item => {
+                        {this.state.users.map(user => {
                             return (
-                                <tr key={item.id}>
+                                <tr key={user.id}>
                                     <th scope="row">1</th>
-                                    <td>{item.name}</td>
-                                    <td>{item.description}</td>
-                                    <td>
-                                        {item.status == 1 ? (
-                                            <span>new</span>
-                                        ) : null}
-                                    </td>
-                                    <td>
-                                        {item.status == 2 ? (
-                                            <span>used</span>
-                                        ) : null}
-                                    </td>
+                                    <td>{user.name}</td>
+                                    <td>{user.email}</td>
+                                    <td>{user.date} </td>
                                     <td>
                                         <Link
                                             className="btn btn-info"
-                                            to={"/edit/item" + item.id}
+                                            to={"/edit/user" + user.id}
                                         >
                                         <FontAwesomeIcon icon='edit' className='icon' />
-                                            Edit item
+                                            Edit user
                                         </Link>{" "}
                                         <button
                                             className="btn btn-danger delete_btn"
@@ -121,4 +112,4 @@ class Getitems extends Component {
     }
 }
 
-export default Getitems;
+export default GetUsers;
