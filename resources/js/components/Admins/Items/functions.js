@@ -70,7 +70,7 @@ export const deleteitems = async (id) => {
 
 export const handlePage = async (pageNumber) => {
     return await axios.get(
-        url + "get/items" +pageNumber , 
+        url + "get/items?page=" +pageNumber , 
         {
             headers: token
         }

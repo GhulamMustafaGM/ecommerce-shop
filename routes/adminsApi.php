@@ -43,6 +43,7 @@ Route::group(['prefix' => 'admins','namespace'=>'Admins', 'middleware'=>'adminsR
 ########################## users #########################################
 
 Route::group(['prefix' => 'admins','namespace'=>'Admins', 'middleware'=>'adminsRoutes','jwt.auth'], function () {
-    Route::post('add/users', [MembersController::class,'getAuthenticatedAdmin']);
+    Route::post('add/users', [MembersController::class,'addUser']);
+    Route::get('get/users', [MembersController::class,'getUser']);
     
 });

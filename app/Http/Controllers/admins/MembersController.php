@@ -32,7 +32,7 @@ class MembersController extends Controller
         $users = Users::create([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
-            'password' => $request->get('password'),
+            'password' => Hash::make($request->get('password')),
             'date' => now(),
             'approve' => 1,
             'photo' => $fileName,
@@ -42,44 +42,11 @@ class MembersController extends Controller
         return response()->json(compact('users'));
     }
 
-    public function getItem()
+    public function getUser()
     {
-        $items = Items::orderBy('id', 'desc')->paginate(5);
-        return response()->json(compact('items'));
+        $users = Users::orderBy('id', 'desc')->paginate(5);
+        return response()->json(compact('users'));
     }
 
-    public function editItem($id)
-    {
-        $items = Items::find($id);
-        return response()->json(compact('items'));
-    }
-
-    public function updateItem()
-    {
-
-        $rules = $this->ItemsRules();
-        $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) {
-            return response()->json(['error at validation'], 400);
-        }
-        $fileName = $this->uploadphoto($request->file('photo'), 'images/items');
-
-        $items = Items::find($id);
-
-        $items->name = $request->name;
-        $items->description = $request->description;
-        $items->status = $request->status;
-        $items->price = $request->price;
-        $items->photo = $fileName;
-
-        $items->save();
-
-        return response()->json(compact('items'));
-    }
-
-    public function deleteItem($id)
-    {
-        $items = Items::find($id);
-        $items->delete();
-    }
+    
 }
