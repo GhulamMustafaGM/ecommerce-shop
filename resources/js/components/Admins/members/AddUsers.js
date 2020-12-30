@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { getauthadmin } from "../../Admins/functions";
-import { additems } from "./functions";
+import { addusers } from "./functions";
 
 class AddUsers extends Component {
     state = {
@@ -137,7 +136,7 @@ class AddUsers extends Component {
         formData.append("password", this.state.password);
         formData.append("photo", this.state.photo);
 
-        additems(formData).then(res => {
+        addusers(formData).then(res => {
             if (res) {
                 this.inputRef.current.value = "";
                 this.setState({
@@ -259,4 +258,4 @@ class AddUsers extends Component {
     }
 }
 
-export default AddItems;
+export default AddUsers;

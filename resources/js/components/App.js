@@ -3,10 +3,13 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter as Router, Route } from 'react-router-dom'
 import Home from "./Admins/Home";
+
 import Login from "./Admins/Login";
 import Navbar from "./Admins/Navbar";
-import AddItems from "./items/AddItems";
-import AddItems from "./items/GetItems";
+import AddItems from "./Admins/Items/AddItems";
+import GetItems from "./Admins/Items/GetItems";
+import EidtItems from "./Admins/Items/EditItem";
+import addusers from "./Admins/members/functions";
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -23,9 +26,13 @@ class App extends Component {
                 <Router>
                     <Navbar />
                         <div className="container">
+                                 {/* items */}
                                 <Route exact path='/edit/item:id' component={EditItems} />
                                 <Route exact path='/getitem' component={GetItems} />
                                 <Route exact path='/add/item' component={AddItems} />
+                                {/* users */}
+                                <Route exact path='/add/users' component={AddUsers} />
+                                {/* login and home */}
                                 <Route exact path='/home' component={Home} />
                                 <Route exact path='/adminsLogin' component={Login} />
                         </div>

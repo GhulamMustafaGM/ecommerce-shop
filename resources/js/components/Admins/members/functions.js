@@ -5,7 +5,7 @@ const token = { Authorization: `bearer ${localStorage.addminsToken}` };
 
 export const addusers = async ( formData) => {
     return await axios
-        .post(url + "add/users/" , formData, {
+        .post(url + "add/users" , formData, {
             headers: token
         })
         .then(res => {

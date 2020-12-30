@@ -15,7 +15,7 @@ class MembersController extends Controller
     {
 
         //import from trait(membersRules)
-        $rules = $this->MembersRules();
+        $rules = $this->MembersRules($request);
 
         $validator = Validator::make($request->all(), $rules);
 
