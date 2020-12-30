@@ -7,36 +7,27 @@ class AddItems extends Component {
     state = {
     //inputs 
     name: "",
-    description: "",
-    status: "",
-    price: "",
+    email: "",
+    password: "",
     photo: "",
 
     //validation
     nameRequired: "",
-    descriptionRequired: "",
+    emailRequired: "",
     statusRequrired: "",
-    priceRequired: "",
+    passwordRequired: "",
     photoRequired: "",
     photoType: "",
     photoSize: "",
     success: ""
     };
 
-    ComponentDidMount() {
-        getauthadmin().then(res=>{
-            this.setState({
-                admins_id:res.data.admin.id
-            });
-        });
-    }
-
     inputRef = React.createRef();
 
     validateName=()=>{
         let nameRequired='';
         if(this.state.name.length < 4) {
-            nameRequired='you should enter at least 4 characters';
+            nameRequired='you should enter at least 10 characters';
         }
         if(nameRequired) {
             this.setState({
@@ -49,71 +40,44 @@ class AddItems extends Component {
         }
     }
 
-    validatedescription=()=>{
-        let descriptionRequired='';
+    validateemail=()=>{
+        let emailRequired='';
         if(this.state.name.length < 4) {
-            descriptionRequired='you should enter at least 4 characters';
+            emailRequired='you should enter at least 10 characters';
         }
-        if(descriptionRequired) {
+        if(emailRequired) {
             this.setState({
-                descriptionRequired
+                emailRequired
             })
         }else{
             this.setState({
-                descriptionRequired:''
+                emailRequired:''
             })
         }
     }
 
-    validatestatus=()=>{
-        let statusRequired='';
-        if(! this.state.status) {
-            statusRequired='you should enter at least 4 characters'
+    validatepassword=()=>{
+        let passwordRequired='';
+        if( this.state.password.length < 8) {
+            passwordRequired='you should enter at least 8 characters';
         }
-        if(statusRequired) {
+        if(passwordRequired) {
             this.setState({
-                statusRequired
+                passwordRequired
             })
         }else{
             this.setState({
-                statusRequired:''
-            })
-        }
-    }
-
-    validateprice=()=>{
-        let priceRequired='';
-        if(! this.state.price) {
-            priceRequired='you should select price'
-        }
-        if(priceRequired) {
-            this.setState({
-                priceRequired
-            })
-        }else{
-            this.setState({
-                priceRequired:''
+                passwordRequired:''
             })
         }
     }
 
     validatephoto=()=>{
         let photoRequired="";
-        if(! this.state.photo) {
-            photoRequired='you should select photo'
-        }
-        if(photoRequired) {
-            this.setState({
-                photoRequired
-            });
-            return 
-        }else{
-            this.setState({
-                photoRequired:""
-            });
-        }
+        if( this.state.photo) {
+            photoRequired='you should select photo';
 
-        let photoType="";
+            let photoType="";
         if(! this.state.photo.type !=='image/jpg' && this.state.photo.type !=='image/jpeg' && this.state.photo.type !=='image/png' && this.state.photo.type !=='image/gif') {
             photoType = "invalid image";
         }
@@ -141,6 +105,9 @@ class AddItems extends Component {
                 photoSize:""
             });
         }
+        }
+
+        
     };
 
 
@@ -156,21 +123,18 @@ class AddItems extends Component {
         })
     };
 
-
     submitState=(e)=>{
         e.preventDefault();
 
         this.validateName();
-        this.validatedescription();
-        this.validatestatus();
-        this.validateprice();
+        this.validateemail();
+        this.validatepassword();
         this.validatephoto();
 
         const formData = new FormData();
         formData.append('name',this.state.name)
-        formData.append('description',this.state.description)
-        formData.append('status',this.state.status)
-        formData.append('price',this.state.price)
+        formData.append('email',this.state.email)
+        formData.append('password',this.state.password)
         formData.append('photo',this.state.photo)
 
         const admins_id=this.state.admins_id
@@ -181,9 +145,9 @@ class AddItems extends Component {
                 this.setState({
                     success:'you created item successfully',
                     name : "",
-                    description : "",
+                    email : "",
                     status : "",
-                    price : "",
+                    password : "",
                 });
             }
         });
@@ -216,14 +180,14 @@ class AddItems extends Component {
                                 </div>
 
                                 <div className="form-group">
-                                <label htmlFor="exampleInputdescription1">description</label>
-                                <input type="text" className="form-control" id="exampleInputdescription1" name='description' value={this.state.description} onChange={this.changeState} />
-                                <small style={{ color:'red' }}>{this.state.descriptionRequired} </small>
+                                <label htmlFor="exampleInputemail1">email</label>
+                                <input type="text" className="form-control" id="exampleInputemail1" name='email' value={this.state.email} onChange={this.changeState} />
+                                <small style={{ color:'red' }}>{this.state.emailRequired} </small>
                                 </div>
 
                                 <div className="form-group">
                                 <label htmlFor="exampleInputstatus1">status</label>
-                                <select type="text" className="form-control" id="exampleInputdescription1" name='status' value={this.state.status} onChange={this.changePhoto} >
+                                <select type="text" className="form-control" id="exampleInputemail1" name='status' value={this.state.status} onChange={this.changePhoto} >
                                 <option value=''>...</option>
                                 <option value='1'>new</option>
                                 <option value='2'>used</option>
@@ -233,9 +197,9 @@ class AddItems extends Component {
                                 </div>
 
                                 <div className="form-group">
-                                <label htmlFor="exampleInputprice1">price</label>
-                                <input type="text" className="form-control" id="exampleInputprice1" name='price' value={this.state.price} onChange={this.changeState} />
-                                <small style={{ color:'red' }}>{this.state.priceRequired} </small>
+                                <label htmlFor="exampleInputpassword1">password</label>
+                                <input type="text" className="form-control" id="exampleInputpassword1" name='password' value={this.state.password} onChange={this.changeState} />
+                                <small style={{ color:'red' }}>{this.state.passwordRequired} </small>
                                 </div>
                                 
                                 <div className="form-group">
