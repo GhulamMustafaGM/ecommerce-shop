@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { addusers } from "./functions";
+import { editUser, EditUser, updateUser } from "./functions";
 
-class AddUsers extends Component {
+class EditUsers extends Component {
     state = {
         //inputs
         name: "",
@@ -19,6 +19,16 @@ class AddUsers extends Component {
         photoSize: "",
         success: ""
     };
+
+    componentDidMount() {
+        editUser().then(res => {
+            this.setState({
+                name: res.data.users.name,
+                email: res.data.users.email,
+                password: res.data.users.password,
+            })
+        })
+    }
 
     inputRef = React.createRef();
 
@@ -136,7 +146,7 @@ class AddUsers extends Component {
         formData.append("password", this.state.password);
         formData.append("photo", this.state.photo);
 
-        addusers(formData).then(res => {
+        updateUser(formData).then(res => {
             if (res) {
                 this.inputRef.current.value = "";
                 this.setState({
@@ -258,4 +268,4 @@ class AddUsers extends Component {
     }
 }
 
-export default AddUsers;
+export default EditUsers;

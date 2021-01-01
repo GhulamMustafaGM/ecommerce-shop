@@ -53,13 +53,13 @@ class MembersController extends Controller
         $users->delete();
     }
 
-    public function editItem($id)
+    public function editUser($id)
     {
         $users = Items::find($id);
         return response()->json(compact('users'));
     }
 
-    public function updateItem()
+    public function updateUser()
     {
         $users = Users::find($id);
         $rules = $this->MembersRules($request, $users);
