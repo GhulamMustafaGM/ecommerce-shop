@@ -46,5 +46,7 @@ Route::group(['prefix' => 'admins','namespace'=>'Admins', 'middleware'=>'adminsR
     Route::post('add/users', [MembersController::class,'addUser']);
     Route::get('get/users', [MembersController::class,'getUser']);
     Route::delete('delete/users{id}', [MembersController::class,'deleteUser']);
+    Route::get('edit/users{id}', [MembersController::class,'editUser']);
+    Route::post('update/users{id}', [MemberssController::class,'updateUser']);
     
 });

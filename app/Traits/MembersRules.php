@@ -2,9 +2,11 @@
 
 namespace App\Traits;
 
+use Symfony\Component\HttpFoundation\Request;
+
 trait MembersRules
 {
-    public function MembersRules(Request $request)
+    public function MembersRules(Request $request, $users = null)
     {
         if($request->file('photo')){
             $photoRules = 'image|mimes:jpg,jpeg,gif,png|max:14048';
@@ -14,7 +16,7 @@ trait MembersRules
         }
         $rules = [
             'name' => 'required|string|min:4|max:25',
-            'email' => 'required|email|min:10|max:100|unique:users',
+            'email' => 'required|email|min:10|max:100|unique:users, email', '.$users->id',
             'password' => 'required|string|min:8|max:50',
             'photo' => $photoRules
         ];

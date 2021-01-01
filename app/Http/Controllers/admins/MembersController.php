@@ -36,8 +36,7 @@ class MembersController extends Controller
             'date' => now(),
             'approve' => 1,
             'photo' => $fileName,
-            
-        ]
+            ]
         );
         return response()->json(compact('users'));
     }
@@ -48,8 +47,39 @@ class MembersController extends Controller
         return response()->json(compact('users'));
     }
 
-    public function deleteUser($id) {
+    public function deleteUser($id)
+    {
         $users = users::find($id);
         $users->delete();
+    }
+
+    public function editItem($id)
+    {
+        $users = Items::find($id);
+        return response()->json(compact('users'));
+    }
+
+    public function updateItem()
+    {
+        $users = Users::find($id);
+        $rules = $this->MembersRules($request, $users);
+
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json(['error at validation'], 400);
+        }
+        $fileName = '';
+        if($request->file('photo')) {
+            $fileName = $this->uploadPhoto($request->file('photo'), 'images/users');
+        }
+        
+        $users->name = $request->name;
+        $users->email = $request->email;
+        $users->password = $request->password;
+        $users->photo = $fileName;
+
+        $users->save();
+
+        return response()->json(compact('users'));
     }
 }
