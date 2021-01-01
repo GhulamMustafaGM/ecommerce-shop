@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { addusers } from "./functions";
+import { editUser, updateUser } from "./functions";
 
-class AddUsers extends Component {
+class EditUsers extends Component {
     state = {
         //inputs
         name: "",
@@ -19,6 +19,16 @@ class AddUsers extends Component {
         photoSize: "",
         success: ""
     };
+
+    componentDidMount() {
+        const id = this.props.match.params.id
+        editUser(id).then(res => {
+            this.setState({
+                name: res.data.users.name,
+                email: res.data.users.email,
+            })
+        })
+    }
 
     inputRef = React.createRef();
 
@@ -136,7 +146,7 @@ class AddUsers extends Component {
         formData.append("password", this.state.password);
         formData.append("photo", this.state.photo);
 
-        addusers(formData).then(res => {
+        updateUser(id, formData).then(res => {
             if (res) {
                 this.inputRef.current.value = "";
                 this.setState({
@@ -170,7 +180,7 @@ class AddUsers extends Component {
                     className="card text-white bg-dark mb-3 card_login"
                     style={{ maxWidth: "22rem" }}
                 >
-                    <div className="card-header">add item</div>
+                    <div className="card-header">edit user</div>
                     <div className="card-body">
                         <form onSubmit={this.submitState}>
                             <div className="form-group">
@@ -248,7 +258,7 @@ class AddUsers extends Component {
                             </div>
 
                             <button type="submit" className="btn btn-primary">
-                                add
+                                update
                             </button>
                         </form>
                     </div>
@@ -258,4 +268,4 @@ class AddUsers extends Component {
     }
 }
 
-export default AddUsers;
+export default EditUsers;

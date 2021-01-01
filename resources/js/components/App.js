@@ -33,6 +33,7 @@ class App extends Component {
                                 {/* users */}
                                 <Route exact path='/add/users' component={AddUsers} />
                                 <Route exact path='/get/users' component={GetUsers} />
+                                <Route exact path='/edit/users/:id' component={EditUsers} />
                                 {/* login and home */}
                                 <Route exact path='/home' component={Home} />
                                 <Route exact path='/adminsLogin' component={Login} />
