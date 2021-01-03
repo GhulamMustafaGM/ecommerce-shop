@@ -14,6 +14,7 @@ import addusers from "./Admins/members/functions";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faAngleDoubleLeft, faBriefcase, faEdit, faHome, faPlusSquare, faTrash} from '@fortawesome/free-solid-svg-icons'
+import AddCategory from './category/AddCategory';
 
 library.add(fab, faHome, faAngleDoubleLeft, faBriefcase, faPlusSquare, faTrash, faEdit )
 
@@ -34,6 +35,8 @@ class App extends Component {
                                 <Route exact path='/add/users' component={AddUsers} />
                                 <Route exact path='/get/users' component={GetUsers} />
                                 <Route exact path='/edit/users/:id' component={EditUsers} />
+                                {/* category*/}
+                                <Route exact path='/add/category' component = {AddCategory} />
                                 {/* login and home */}
                                 <Route exact path='/home' component={Home} />
                                 <Route exact path='/adminsLogin' component={Login} />

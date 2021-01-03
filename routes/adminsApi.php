@@ -50,3 +50,14 @@ Route::group(['prefix' => 'admins','namespace'=>'Admins', 'middleware'=>'adminsR
     Route::post('update/users{id}', [MemberssController::class,'updateUser']);
     
 });
+
+################################ Category #########################################
+
+Route::group(['prefix' => 'admins','namespace'=>'Admins', 'middleware'=>'adminsRoutes','jwt.auth'], function () {
+    Route::post('add/category', [CategoryController::class,'addCategory']);
+    Route::get('get/users', [MembersController::class,'getUser']);
+    Route::delete('delete/users{id}', [MembersController::class,'deleteUser']);
+    Route::get('edit/users{id}', [MembersController::class,'editUser']);
+    Route::post('update/users{id}', [MemberssController::class,'updateUser']);
+    
+});
