@@ -12,7 +12,48 @@ export const AddCategories = async ( formData) => {
     ).then(res=>{
         return res;
     }).catch(err=> {
-        console.log(err);
+        console.log(err.response);
+        throw err
     });
 };
 
+export const GetCategories = async ( ) => {
+    return await axios.get(
+        url + "get/category" ,  
+        {
+            headers: token
+        }
+    ).then(res=>{
+        return res;
+    }).catch(err=> {
+        console.log(err.response);
+        throw err
+    });
+};
+
+export const deleteCategories = async ( ) => {
+    return await axios.delete(
+        url + "delete/category" +id,   
+        {
+            headers: token
+        }
+    ).then(res=>{
+        return res;
+    }).catch(err=> {
+        console.log(err.response);
+        throw err
+    });
+};
+
+export const handlePage = async (pageNumber) => {
+    return await axios.get(
+        url + "get/category?page=" +pageNumber , 
+        {
+            headers: token
+        }
+    ).then(res=>{
+        return res;
+    }).catch(err=> {
+        console.log(err);
+    });
+};

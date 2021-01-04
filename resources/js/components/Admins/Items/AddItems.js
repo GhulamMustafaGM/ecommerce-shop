@@ -185,6 +185,10 @@ class AddItems extends Component {
                     status : "",
                     price : "",
                 });
+            }else {
+                this.setState({
+                    success: "",
+                });
             }
         });
 

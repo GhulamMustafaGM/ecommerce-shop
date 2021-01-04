@@ -13,6 +13,21 @@ class CategoryControl extends Controller
 
     public function addCategory(Request $request) {
 
+        $nameUniqueRule =[
+            'name' => 'unique:category'
+        ];
+        $error = [
+            'name_unique' => 'this name is used' 
+        ];
+
+        $validator = Validator::make($request->only('name'), $nameUniqueRule);
+
+        if($validator->fails()) {
+            return rewsponse()->json($error, 400);
+        }
+        
+
+        //import from trait(CategoryRules)
         $rules = $this->CategoryRules();
         $validator = Validator::make($request->all(), $rules);
 
@@ -31,5 +46,15 @@ class CategoryControl extends Controller
         ]
         );
             return response()->json(compact('category'));
+    }
+
+    public function getCategory() {
+        $categories = Category::orderBy('id', 'desc')->paginate(5);
+        return response()->json(compact('categories'));
+    }
+
+    public function deleteCategory($id) {
+        $categories = categories::find($id);
+        $categories->delete();
     }
 }

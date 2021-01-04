@@ -11,6 +11,7 @@ class AddCategory extends Component {
 
     //validation
     nameRequired: "",
+    nameUnique:'',
     descriptionRequired: "",
     photoRequired: "",
     photoType: "",
@@ -131,9 +132,20 @@ class AddCategory extends Component {
                     success:'you created item successfully',
                     name : "",
                     description : "",
+                    nameUnique: ''
+                });
+            } else {
+                this.setState({
+                    success: "",
                 });
             }
+            
+        }).catch(err=>{
+            this.setState({
+                nameUnique:err.response.data.name_unique
+            })
         });
+    };
 
         // login(adminsData).then(res=>{
         // if(res) {
@@ -144,7 +156,7 @@ class AddCategory extends Component {
         //     })
         // }
         // })
-    };
+
 
     render() { 
         const success=<div className='alert alert-sucess' > {this.state.success} </div>
@@ -160,6 +172,7 @@ class AddCategory extends Component {
                                 <label htmlFor="exampleInputEmail1">name address</label>
                                 <input type="text" className="form-control" name='name' value={this.state.name} onChange={this.changeState} />
                                 <small style={{ color:'red' }}>{this.state.nameRequired} </small>
+                                <small style={{ color:'red' }}>{this.state.nameUnique} </small>
                                 </div>
 
                                 <div className="form-group">

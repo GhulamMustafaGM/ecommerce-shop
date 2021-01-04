@@ -37,6 +37,7 @@ class App extends Component {
                                 <Route exact path='/edit/users/:id' component={EditUsers} />
                                 {/* category*/}
                                 <Route exact path='/add/category' component = {AddCategory} />
+                                <Route exact path='/get/category' component = {GetCategory} />
                                 {/* login and home */}
                                 <Route exact path='/home' component={Home} />
                                 <Route exact path='/adminsLogin' component={Login} />

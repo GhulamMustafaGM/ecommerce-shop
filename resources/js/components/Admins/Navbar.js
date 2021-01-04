@@ -29,6 +29,9 @@ class Navbar extends Component {
                     <li class="nav-item active">
                     <Link class="nav-link" to="/get/users"><FontAwesomeIcon icon='briefcase' className='icon' /> Members </Link>
                     </li>
+                    <li>
+                    <Link class="nav-link" to="/get/category"><FontAwesomeIcon icon='briefcase' className='icon' /> Categories </Link>
+                    </li>
 
                     <li class="nav-item layout">
                         <a class="nav-link" href="/adminsLogin" onClick={this.logout.bind(this)}><FontAwesomeIcon icon='angle-double-left' className='icon' /> logout</a>
