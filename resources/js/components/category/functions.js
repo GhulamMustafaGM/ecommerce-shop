@@ -31,6 +31,49 @@ export const GetCategories = async ( ) => {
     });
 };
 
+export const editCategories = async (id) => {
+    return await axios.get(
+        url + "edit/category/" +id ,  
+        {
+            headers: token
+        }
+    ).then(res=>{
+        return res;
+    }).catch(err=> {
+        console.log(err.response);
+        throw err
+    });
+};
+
+export const updateCategories = async (id, formData ) => {
+    return await axios.post(
+        url + "update/category/" +id, formData,  
+        {
+            headers: token
+        }
+    ).then(res=>{
+        return res;
+    }).catch(err=> {
+        console.log(err.response);
+        throw err
+    });
+};
+
+
+export const updatePhoto = async (id, formData ) => {
+    return await axios.post(
+        url + "update/photo/" +id, formData,  
+        {
+            headers: token
+        }
+    ).then(res=>{
+        return res;
+    }).catch(err=> {
+        console.log(err.response);
+        throw err
+    });
+};
+
 export const deleteCategories = async ( ) => {
     return await axios.delete(
         url + "delete/category" +id,   

@@ -57,7 +57,8 @@ Route::group(['prefix' => 'admins','namespace'=>'Admins', 'middleware'=>'adminsR
     Route::post('add/category', [CategoryController::class,'addCategory']);
     Route::get('get/category', [CategoryController::class,'getCategory']);
     Route::delete('delete/category{id}', [CategoryController::class,'deleteCategory']);
-    Route::get('edit/users{id}', [MembersController::class,'editUser']);
-    Route::post('update/users{id}', [MemberssController::class,'updateUser']);
+    Route::get('edit/category{id}', [CategoryController::class,'editCategory']);
+    Route::post('update/category{id}', [CategoryController::class,'updateCategory']);
+    Route::post('update/photo{id}', [CategoryController::class,'updatePhoto']);
     
 });

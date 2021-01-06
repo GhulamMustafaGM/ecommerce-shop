@@ -4,19 +4,13 @@ namespace App\Traits;
 
 trait MembersRules
 {
-    public function MembersRules($photo, $users = null)
+    public function MembersRules($photo, $id = null)
     {
         if($photo) {
             $photoRules = 'image|mimes:jpg,jpeg,gif,png|max:14048';
         }
         else {
             $photoRules='';
-        }
-
-        if($users == null) {
-            $id = null;
-        }else {
-            $id = $users->id;
         }
 
         $rules = [

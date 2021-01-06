@@ -79,7 +79,16 @@ class GetCategory extends Component {
                                         >
                                         <FontAwesomeIcon icon='edit' className='icon' />
                                             Edit category
-                                        </Link>{" "}
+                                        </Link>
+
+                                        <Link
+                                        className="btn btn-info"
+                                        to={"/edit/photo" + category.id}
+                                        >
+                                        <FontAwesomeIcon icon='edit' className='icon' />
+                                            Edit photo
+                                        </Link>
+
                                         <button
                                             className="btn btn-danger delete_btn"
                                             onClick={() => this.delete(category.id)}

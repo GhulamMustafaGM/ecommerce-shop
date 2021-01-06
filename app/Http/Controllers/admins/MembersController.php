@@ -61,9 +61,8 @@ class MembersController extends Controller
 
     public function updateUser()
     {
-        $users = Users::find($id);
         $photo = $request->file('photo');
-        $rules = $this->MembersRules($photo, $users);
+        $rules = $this->MembersRules($photo, $id);
 
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
@@ -73,7 +72,7 @@ class MembersController extends Controller
         if($photo) {
             $fileName = $this->uploadPhoto($photo, 'images/users');
         }
-        
+        $users = Users::find($id);
         $users->name = $request->name;
         $users->email = $request->email;
         $users->password = $request->password;
